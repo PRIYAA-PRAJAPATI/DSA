@@ -1,38 +1,63 @@
 class Solution {
 
-    List<List<Integer>> ans = new ArrayList<>();
+    void fun(List<Integer> nums,
+             List<Integer> tmp,
+             List<List<Integer>> ans,
+             Map<List<Integer>, Integer> m1) {
 
-    void solve(int[] nums, int start, List<Integer> cur) {
+        Collections.sort(tmp);
 
-        
-        ans.add(new ArrayList<>(cur));
+        if (m1.containsKey(tmp)) {
+            return;
+        }
 
-        for (int i = start; i < nums.length; i++) {
+        ans.add(new ArrayList<>(tmp));
+        m1.put(new ArrayList<>(tmp), 1);
 
-            
-            if (i > start && nums[i] == nums[i - 1]) {
-                continue;
+        if (nums.size() == 0) {
+            return;
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            List<Integer> ip = new ArrayList<>(nums);
+            List<Integer> op = new ArrayList<>(tmp);
+
+            op.add(nums.get(i));
+
+            for (int j = 0; j <= i; j++) {
+                ip.remove(0);
             }
 
-            
-            cur.add(nums[i]);
-
-            
-            solve(nums, i + 1, cur);
-
-            
-            cur.remove(cur.size() - 1);
+            fun(ip, op, ans, m1);
         }
     }
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
 
-        
-        Arrays.sort(nums);
+        List<Integer> tmp = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<List<Integer>, Integer> m1 = new HashMap<>();
 
-        List<Integer> cur = new ArrayList<>();
+        List<Integer> input = new ArrayList<>();
 
-        solve(nums, 0, cur);
+        for (int x : nums) {
+            input.add(x);
+        }
+
+        fun(input, tmp, ans, m1);
+
+        Collections.sort(ans, (a, b) -> {
+            int n = Math.min(a.size(), b.size());
+
+            for (int i = 0; i < n; i++) {
+                if (!a.get(i).equals(b.get(i))) {
+                    return a.get(i) - b.get(i);
+                }
+            }
+
+            return a.size() - b.size();
+        });
 
         return ans;
     }
