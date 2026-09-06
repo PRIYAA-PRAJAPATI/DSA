@@ -30,20 +30,19 @@ class Solution {
 
         Map<Integer, Integer> m1 = new TreeMap<>();
 
-        // Count frequency
-        for (int a : nums) {
+        
+        for (int a : nums) {    // to Count frequency
             m1.put(a, m1.getOrDefault(a, 0) + 1);
         }
 
-        // Store unique sorted values
-        int[] v1 = new int[m1.size()];
+        int[] v1 = new int[m1.size()];   // to Store unique sorted values
         int k = 0;
 
         for (int a : m1.keySet()) {
             v1[k++] = a;
         }
 
-        // Fill dp with -1
+                                // to  Fill dp with -1
         Arrays.fill(dp, -1);
 
         return fun(0, v1, m1);
