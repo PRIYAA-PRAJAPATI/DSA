@@ -8,6 +8,7 @@ class Solution {
         return solve(nums,0,n);
     }
     int solve(int[] nums,int i,int n){
+        //base case
         if(i>=n)
         return 0;
         if(dp[i] != -1)
