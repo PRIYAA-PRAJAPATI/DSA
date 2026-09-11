@@ -9,10 +9,10 @@ class Solution {
     
     
     if(len==k){
-        int a = max*len+ fun(i+1,i+1,0,arr,k);
+        int a = max*len+ fun(i+1,i+1,0,arr,k); //partition
         ans = a;
     }else{
-         int a = max*len+ fun(i+1,i+1,0,arr,k);
+         int a = max*len+ fun(i+1,i+1,0,arr,k); //not partition
          int b = fun(i+1,p,max,arr,k);
          ans= Math.max(ans,a);
          ans=Math.max(ans,b);
