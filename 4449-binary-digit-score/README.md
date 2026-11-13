@@ -1,6 +1,6 @@
 <h2><a href="https://leetcode.com/problems/binary-digit-score">Binary Digit Score</a></h2> <img src='https://img.shields.io/badge/Difficulty-Easy-brightgreen' alt='Difficulty: Easy' /><hr><p>You are given two integers <code>a</code> and <code>b</code>.</p>
 
-<p>Let <code>s1</code> and <code>s2</code> be the number of <strong>set bits</strong> in the binary representations of <code>a</code> and <code>b</code>, respectively.</p>
+<p>Let <code>s1</code> and <code>s2</code> be the number of <strong><span data-keyword="set-bit">set bits</span></strong> in the binary representations of <code>a</code> and <code>b</code>, respectively.</p>
 
 <p>The <strong>score</strong> of these integers is defined as follows:</p>
 
@@ -10,8 +10,6 @@
 </ul>
 
 <p>Return an integer representing the score of <code>a</code> and <code>b</code>.</p>
-
-<p>A <strong>set bit</strong> refers to a bit in the binary representation of a number that has a value of 1.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
