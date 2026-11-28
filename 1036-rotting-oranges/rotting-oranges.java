@@ -1,52 +1,75 @@
-import java.util.LinkedList;
-import java.util.Queue;
 
+
+     
 class Solution {
     public int orangesRotting(int[][] grid) {
-     int m = grid.length;
-    int n = grid[0].length;
-  Queue<int[]> q = new LinkedList<>();
-    int fresh = 0;
-
-    for (int i = 0; i < m; i++) {
-     for (int j = 0; j < n; j++) {
-         if (grid[i][j] == 2) {
-        q.add(new int[]{i, j});
-        } else if (grid[i][j] == 1) {
-         fresh++;
-                }
+        int m = grid.length;
+       int n = grid[0].length;
+        int freshcount = 0 ;
+        int currRot = 0 ;
+        Queue<int[]> q= new LinkedList<>();   
+        for(int i = 0;i<m;i++){
+            for(int j = 0 ; j<n ; j++){
+                if(grid[i][j]==2 )    {
+                    q.offer(new int[]{i,j});
+                }     
+                else if( grid[i][j]==1){
+                    freshcount++;
+                }  
             }
         }
-
-    if (fresh == 0) {
-    return 0;
+        int min = 0 ;
+      
+      
+      while(!q.isEmpty() && freshcount>0){
+        currRot = q.size();
+        while(currRot > 0 ){
+            int[] node = q.poll();
+          int r = node[0];
+          int c = node[1];
+          if (r - 1 >= 0 && grid[r - 1][c] == 1) {
+            grid[r - 1][c] = 2;
+            freshcount--;
+            q.offer(new int[]{r - 1, c});
+        
+            
+        
         }
 
-     int minutes = 0;
-     int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        if (r + 1 < m &&grid[r + 1][c] == 1) {
+            grid[r + 1][c] = 2;
+            freshcount--;
+            q.offer(new int[]{r + 1, c});
+      
 
-     while (!q.isEmpty() && fresh > 0) {
-     int size = q.size();
-     minutes++;
-
-     for (int k = 0; k < size; k++) {
-     int[] curr = q.poll();
-     int r = curr[0];
-    int c = curr[1];
-
-    for (int[] d : dirs) {
-    int nr = r + d[0];
-    int nc = c + d[1];
-
-     if (nr >= 0 && nr < m && nc >= 0 && nc < n && grid[nr][nc] == 1) {
-     grid[nr][nc] = 2;
-    fresh--;
-    q.add(new int[]{nr, nc});
-                    }
-                }
-            }
+         
         }
 
-return fresh == 0 ? minutes : -1;
+        if (c - 1 >= 0 &&   grid[r][c - 1] == 1) {
+            grid[r][c - 1] = 2;
+            freshcount--;
+            q.offer(new int[]{r, c - 1});
+            
+        }
+
+        if (c + 1 < n && grid[r][c + 1] == 1) {
+            grid[r][c + 1] = 2;
+            freshcount--;
+            q.offer(new int[]{r, c + 1});
+            
+            
+        }
+        currRot--;
+    }
+min++;
+  
+}
+
+if (freshcount == 0) {
+    return min;
+} 
+else {
+    return -1;
+}
     }
 }
