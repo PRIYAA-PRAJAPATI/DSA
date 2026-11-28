@@ -1,6 +1,3 @@
-
-
-     
 class Solution {
     public int orangesRotting(int[][] grid) {
         int m = grid.length;
@@ -19,8 +16,6 @@ class Solution {
             }
         }
         int min = 0 ;
-      
-      
       while(!q.isEmpty() && freshcount>0){
         currRot = q.size();
         while(currRot > 0 ){
@@ -30,9 +25,7 @@ class Solution {
           if (r - 1 >= 0 && grid[r - 1][c] == 1) {
             grid[r - 1][c] = 2;
             freshcount--;
-            q.offer(new int[]{r - 1, c});
-        
-            
+            q.offer(new int[]{r - 1, c});  
         
         }
 
@@ -40,8 +33,6 @@ class Solution {
             grid[r + 1][c] = 2;
             freshcount--;
             q.offer(new int[]{r + 1, c});
-      
-
          
         }
 
